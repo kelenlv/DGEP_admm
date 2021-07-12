@@ -1,61 +1,129 @@
 clc
-% clear all
-%% FDA
+clear all
+% FDA
 N=5;
-% d=100;
-% [A,B]=load_phishing(N );
-% load('phishingdata.mat');
-% load_a9a(N);
-load('magic04_full.mat');
-% load('mushrooms_full.mat');112
-% load('ijcnn1_full.mat');22
-% load('a9a_full.mat');123
-% load('winedata_full.mat');%full
-% [sumA,sumB,X_class1,X_class2,RandSeed] = FDAproblem_2class(d,666);
   G=[0     1     0     0     1;
      1     0     1     0     0;
      0     1     0     1     0;
      0     0     1     0     1;
      1     0     0     1     0];%circle
+%  N=10;
+% G=[ 0 1 0 0 0 0 0 0 0 1 
+%         1 0 1 0 0 0 0 0 0 0
+%         0 1 0 1 0 0 0 0 0 0
+%         0 0 1 0 1 0 0 0 0 0
+%         0 0 0 1 0 1 0 0 0 0
+%         0 0 0 0 1 0 1 0 0 0
+%         0 0 0 0 0 1 0 1 0 0
+%         0 0 0 0 0 0 1 0 1 0
+%         0 0 0 0 0 0 0 1 0 1
+%         1 0 0 0 0 0 0 0 1 0
+%     ]; %20 20
+% N=15;
+% G=[
+% 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1
+% 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0
+% 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0
+% 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0
+% 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0
+% 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0
+% 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0
+% 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0
+% 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0
+% 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0
+% 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0
+% 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0
+% 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0
+% 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1
+% 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0
+% ];%20 20
+%  N=20;
+% G=[
+% 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1   
+% 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+% 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+% 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+% 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0   
+% 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0   
+% 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0   
+% 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0   
+% 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0   
+% 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0   
+% 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0   
+% 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0   
+% 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0   
+% 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0   
+% 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0   
+% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0   
+% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0   
+% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0   
+% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1   
+% 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0    
+% ];
+% d=100;
+% [A,B]=load_phishing(N );
+% load('phishingdata.mat');
+% load_a9a(N);
+% load('magic04_full.mat');
+% load('mushrooms_full_10.mat');%112
+% load('ijcnn1_N20.mat');%22
+% load('a9a_full.mat');123
+% load('winedata_N10.mat');%full 12
+% [~,~,~,~,~,~]=load                                                                                                                                          _wine(N);
+% load('iso_N5.mat')
+% [sumA,sumB,X_class1,X_class2,RandSeed] = FDAproblem_2class(d,666);
+% [A, B, u1, u2, X_list, Y_list]=load_data(1);
+% loadAB(20);
 G_=triu(G);
- index=find(G_(:));
+index=find(G_(:));
 for i=1:N
    n(:,i)=sum(G(:,i));% number of neighbor
 end
 %% sample distributed
-d=10;
+d=784;%784
 % ground truth
-sumA=0;
-sumB=0;
-w_train=X_list;
-r_train=Y_list;
-clear X_list Y_list
-for i=1:N
-%     A(:,:,i)=A(:,:,i)+eye(d);
-    sumA=sumA+A(:,:,i);
-%     B(:,:,i)=B(:,:,i)+eye(d);
-    sumB=sumB+B(:,:,i);
-end
-[V,D]=eig(sumA,sumB);%AV=BVD norm(sumA*V-sumB*V*D)
+load('mnist38_N1.mat');
+[V,D]=eig(A,B);
+sumB=B;
 global VV
-VV=V(:,1)/sqrt(norm(V(:,1)'*sumB*V(:,1)));% constraint norm(VV(:,1)'*sumA*VV(:,1)),norm(VV(:,1)'*sumB*VV(:,1))
-F_true=-norm(VV(:,1)'*sumA*VV(:,1));
+VV=V(:,1)/sqrt(norm(V(:,1)'*B*V(:,1)));% constraint norm(VV(:,1)'*sumA*VV(:,1)),norm(VV(:,1)'*sumB*VV(:,1))
+F_true=-norm(VV(:,1)'*A*VV(:,1));
+% sumA=0;
+% sumB=0;
+% w_train=X_list;
+% r_train=Y_list;
+% clear X_list Y_list
+% for i=1:N
+% %     A(:,:,i)=A(:,:,i)+eye(d);
+%     sumA=sumA+A(:,:,i);
+% %     B(:,:,i)=B(:,:,i)+eye(d);
+%     sumB=sumB+B(:,:,i);
+% end
+% [V,D]=eig(sumA,sumB);%AV=BVD norm(sumA*V-sumB*V*D)
+% global VV
+% VV=V(:,1)/sqrt(norm(V(:,1)'*sumB*V(:,1)));% constraint norm(VV(:,1)'*sumA*VV(:,1)),norm(VV(:,1)'*sumB*VV(:,1))
+% F_true=-norm(VV(:,1)'*sumA*VV(:,1));
 % correct_label(2000,w_test,r_test,VV)
-[corr,nn]=correct_label(w_train,r_train,u1,u2,VV);
-Corr=corr/nn;
+% [corr,nn]=correct_label(w_train,r_train,u1,u2,VV);
+% Corr = corr/nn
+w_train=0;
+r_train=0;
+svmclass(VV,w_train,r_train)
 % correct_label(500,X_class1,X_class2,VV)
 % VV=V/sqrt(V(1,:)*sumB*V(1,:)');% constraint norm(VV(:,1)'*sumA*VV(:,1)),norm(VV(:,1)'*sumB*VV(:,1))
 % F_true=-norm(VV(1,:)*sumA*VV(1,:)');
 %% parameter initialization
-rho1=100;%外1000
-rho2=200;%内2000
+rho1 = 20 %100;%外1000
+rho2 = 20 %200;%内2000
 E_list=[];
 Corr_list=[];
+load('mnist38_N5.mat');
 for IIter=1:10
 L_list=[];
-w_init=randn(d,1);
-w_init=w_init/sqrt(w_init'*sumB*w_init);%must
-% load('wronginit.mat');
+% w_init=randn(d,1);
+% w_init=w_init(:,1)/sqrt(norm(w_init(:,1)'*sumB*w_init(:,1)));%must
+% w_init=V(:,1)/sqrt(norm(V(:,1)'*sumB*V(:,1)));
+w_init=VV;%+randn(d,1)
 l_init=zeros(d,1);
 % z_init=w_init+l_init/rho2;
 %% local data preparation
@@ -150,16 +218,18 @@ while 1
             fprintf('#complete outer iter=%d, res1=%0.5f, res2=%0.5f\n',iter,res1,res2);% 
 %             fprintf('\n')
     end
-    if  sin(subspace(VV,w_b))<1e-02
+    if  sin(subspace(VV,w_b))<=1e-02
         break;
     end
 %     norm(VV-w_b)
     sin(subspace(VV,w_b))
-    E_list=[E_list sin(subspace(VV,w_b))];
-    Corr_list=[Corr_list correct_label(w_train,r_train,u1,u2,w_b)/nn];
+%     E_list=[E_list sin(subspace(VV,w_b))];
+%     Corr_list=[Corr_list correct_label(w_train,r_train,u1,u2,w_b)/nn];
 %     
 end
-% E_list=[E_list sin(subspace(VV,w_b))];
+svmclass(w_b,w_train,r_train)
+E_list=[E_list sin(subspace(VV,w_b))];
+Corr_list=[Corr_list svmclass(w_b,w_train,r_train)];
 % Corr_list=[Corr_list correct_label(w_train,r_train,u1,u2,w_b)/nn];
 end
 %%
@@ -376,12 +446,12 @@ end
 function [A,B,w_train,r_train,w_test,r_test]=load_wine(N)
      white= csvread('C:\Users\Kelen\Downloads\white.csv');
      red=csvread('C:\Users\Kelen\Downloads\red.csv');
-     w_test=white(1:800,:);
-     r_test=red(1:800,:);
-     w_train=white(800+1:end,:);
-     r_train=red(800+1:end,:);
-%      w_train=white;
-%      r_train=red;
+%      w_test=white(1:800,:);
+%      r_test=red(1:800,:);
+%      w_train=white(800+1:end,:);
+%      r_train=red(800+1:end,:);
+     w_train=white;
+     r_train=red;
      p1=floor(size(w_train,1)/N);
      p2=floor(size(r_train,1)/N);
      u1=mean(w_train);
@@ -389,22 +459,38 @@ function [A,B,w_train,r_train,w_test,r_test]=load_wine(N)
      for i=1:N
          [A(:,:,i),B(:,:,i)]=prepare_FDA(w_train(p1*(i-1)+1:p1*i,:),r_train(p2*(i-1)+1:p2*i,:));
      end
-     save winedata_800test.mat A B w_train r_train u1 u2 w_test r_test
+     X_list=w_train;
+     Y_list=r_train;
+%      save winedata_800test.mat A B w_train r_train u1 u2 w_test r_test
+     save winedata_N10.mat A B u1 u2 X_list Y_list
 end
-
-function []=load_a9a(N)
-    data=csvread('D:\DGEP+admm\data\magic04.csv');
-%     X_list=[];
-%     Y_list=[];
-%     for i=1:size(data,1)
-%         if data(i,1)==1
-%             X_list=[X_list; data(i, 2:end)];
-%         else
-%             Y_list=[Y_list; data(i, 2:end)];
-%         end
-%     end
-     X_list=data(1:12332,:);
-     Y_list=data(12333:end,:);
+function loadAB(N)
+    load('mnist38_N1.mat')
+    AA=A;
+    BB=B;
+    clear A B
+    for i=1:N
+        A(:,:,i)=AA/N;
+        B(:,:,i)=BB/N;
+    end
+    save mnist38_N20.mat A B
+end
+function [A, B, u1, u2, X_list, Y_list]=load_data(N)
+    data=csvread('mushrooms.csv');
+%     load('mnist38_train.mat')
+%     X_list=Xtrain(1:100,:);
+%     Y_list=Xtrain(101:200,:);
+    X_list=[];
+    Y_list=[];
+    for i=1:size(data,1)
+        if data(i,1)==1
+            X_list=[X_list; data(i, 2:end)];
+        else
+            Y_list=[Y_list; data(i, 2:end)];
+        end
+    end
+%      X_list=data(1:12332,:);
+%      Y_list=data(12333:end,:);
      p1=floor(size(X_list,1)/N);
      p2=floor(size(Y_list,1)/N);
      u1=mean(X_list);
@@ -412,7 +498,7 @@ function []=load_a9a(N)
      for i=1:N
          [A(:,:,i),B(:,:,i)]=prepare_FDA(X_list(p1*(i-1)+1:p1*i,:),Y_list(p2*(i-1)+1:p2*i,:));
      end
-     save mushrooms_full.mat A B u1 u2 X_list Y_list
+     save dia_N1.mat A B u1 u2 X_list Y_list
 end
 function [Sb,Sw]=prepare_FDA(A,B)%max w'*Sb*w s.t. w'*Sw*w=1
 u1=mean(A);
@@ -432,4 +518,14 @@ S1=0;S2=0;
     end
 Sw=(S1+S2)/(p1+p2);
 Sb=Sb+eye(size(A,2));
+end
+function acc_tr =svmclass(V,w_train,r_train)
+    load('mnist38_test.mat')
+    load('mnist38_train.mat')
+%     Xtrain=[w_train;r_train];
+%     Ttrain=[ones(500,1);2*ones(268,1)];%4898,1599
+    svmModel = fitcsvm(Xtrain*V, Ttrain,'KernelFunction','RBF');
+    CVSVMModel = crossval(svmModel);
+    acc_tr = 1- kfoldLoss(CVSVMModel)
+%     acc_ts = sum(Ttest==predict(svmModel,Xtest*V))/100
 end
